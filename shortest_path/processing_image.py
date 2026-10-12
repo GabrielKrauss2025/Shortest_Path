@@ -7,8 +7,10 @@ img = Image.open('labirinto.png')
 
 # apresenta a imagem original
 plt.figure()
+plt.axis('off')
 plt.imshow(img)
 plt.title('Imagem original do labirinto')
+plt.savefig('labirinto_original.png', dpi=150, bbox_inches='tight')
 plt.show()
 
 # converte a imagem para a escala de cinza
@@ -29,21 +31,22 @@ M = M[linha.min():(linha.max() + 1), coluna.min():(coluna.max()+1)]
 
 # apresenta a imagem binária
 plt.figure()
+plt.axis('off')
 plt.imshow(M, cmap='gray')
+plt.title('Imagem binária do labirinto')
+plt.savefig('labirinto_binário.png', dpi=150, bbox_inches='tight')
 linhas, colunas = M.shape
 tol = 5
 # entrada
 linha_entrada = np.where(M[:, 0] == 1)[0]
 if linha_entrada.size == 0:
     raise ValueError('Labirinto inválido')
-print(f'Ponto de entrada: {(0, float((linha_entrada.min() + linha_entrada.max()) / 2))}')
 plt.scatter(0 + tol, (linha_entrada.min() + linha_entrada.max()) / 2, c='green', s = 35)
 
 # saída
 linha_saida = np.where(M[:, -1] == 1)[0]
 if linha_saida.size == 0:
     raise ValueError('Labirinto inválido')
-print(f'Ponto de saída: {(colunas, float((linha_saida.min() + linha_saida.max()) / 2))}')
 plt.scatter(colunas - tol, (linha_saida.min() + linha_saida.max()) / 2, c='red', s = 35)
-plt.title('Imagem binária do labirinto')
+plt.savefig('labirinto_binário_pontos.png', dpi=150, bbox_inches='tight')
 plt.show()
