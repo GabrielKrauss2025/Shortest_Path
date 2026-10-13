@@ -1,6 +1,7 @@
 from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 def carregar_labirinto(title):
     # Ler a imagem
@@ -23,7 +24,7 @@ def carregar_labirinto(title):
 
     return M
 
-def cria_celulas(num_celulas, lab):
+def cria_celulas_paredes(num_celulas, lab):
     n_celulas = num_celulas 
     n_grade = n_celulas * 2 + 1  
 
@@ -50,53 +51,50 @@ def cria_celulas(num_celulas, lab):
                 "pixels": lab[x_inicio:x_fim, y_inicio:y_fim], 
                 "centro": [x_centro, y_centro]
             }
-
+        
     return celulas
-'''
+
 def verifica_vizinhos_horizontal(celulas, lab):
     n = celulas.shape[0] 
-    passagens_horizontais = []
+    passagens_hor = {}
 
+    # Para horizontal: i (linhas) vai até n, j (colunas) vai até n-1
     for i in range(n):
         for j in range(n - 1): 
+            # A linha Y é a mesma, tiramos a média do X (coluna) entre a célula e seu vizinho à direita
             y_centro = celulas[i, j]["centro"][0]
-            
-            x_divisa = 
+            x_centro = round((celulas[i, j]["centro"][1] + celulas[i, j+1]["centro"][1]) / 2)
 
-            if lab[y_c, x_divisa] == 1 or lab[y_c, x_divisa-1] == 1 or lab[y_c, x_divisa+1] == 1:
+            # Verifica o pixel intermediário na matriz (índices: linha, coluna)
+            if lab[y_centro, x_centro] == 1: # 1 significa região livre[cite: 2]
                 id1 = celulas[i, j]["id"]
-                id2 = celulas[i, j + 1]["id"]
-                passagens_horizontais.append((id1, id2))
+                id2 = celulas[i, j+1]["id"]
+                
+                # Adiciona as conexões (grafo não-direcionado)
+                passagens_hor.setdefault(id1, []).append(id2)
+                passagens_hor.setdefault(id2, []).append(id1)
 
-    return passagens_horizontais
+    return passagens_hor
 
-def verifica_vizinhos_vertical(celulas):
-    vizinhança = np.empty()
-    return grafo
+
 '''
 M = carregar_labirinto("labirinto.png")
 
 celulas = cria_celulas(20, M) 
 
-'''
-print(celulas.shape)
-print(celulas[0, 0]["id"])
-print(celulas[0, 0]["centro"])
-print(np.unique(celulas[0, 0]["pixels"], return_counts=True))
-'''
-
+# Cria a pasta 'img' um nível acima do diretório atual
+os.makedirs('../img', exist_ok=True)
 
 plt.figure()
 plt.axis('off')
-plt.imshow(M, cmap='gray') # M é a sua imagem binária
+plt.imshow(M, cmap='gray')
 plt.title('Imagem binária do labirinto')
 
-# Extraindo as coordenadas X (índice 1) e Y (índice 0) para todas as 20x20 células
 x_coords = [celulas[i, j]["centro"][1] for i in range(20) for j in range(20)]
 y_coords = [celulas[i, j]["centro"][0] for i in range(20) for j in range(20)]
 
 # Plotando os centros
 plt.scatter(x_coords, y_coords, c='red', s=35)
 
-plt.savefig('labirinto_binario_celulas.png', dpi=150, bbox_inches='tight')
+plt.savefig('../img/labirinto_binario_celulas.png', dpi=150, bbox_inches='tight')
 plt.show()
