@@ -115,7 +115,7 @@ def criando_grafo(hor, ver):
 
     return grafo, vertices, arestas  
 
-M = carregar_labirinto("labirinto.png")
+M = carregar_labirinto("../img/labirinto.png")
 
 celulas = cria_celulas(20, M) 
 hor = verifica_vizinhos_horizontal(celulas, M)
@@ -141,7 +141,9 @@ for u in grafo:
 x_coords = [celulas[v]["centro"][0] for v in celulas]
 y_coords = [celulas[v]["centro"][1] for v in celulas]
 
-plt.scatter(x_coords, y_coords, c='red', s=25, zorder=2)
+plt.scatter(x_coords[1:-1], y_coords[1:-1], c='orange', s=25, zorder=2)
+plt.scatter(x_coords[0], y_coords[0], c='green', s=30, zorder=2)
+plt.scatter(x_coords[-1], y_coords[-1], c='red', s=30, zorder=2)
 
 # Salva a imagem em 'img' 
 os.makedirs('../img', exist_ok=True)
