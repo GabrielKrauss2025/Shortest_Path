@@ -101,4 +101,4 @@ if __name__ == '__main__':
     hor = verifica_vizinhos_horizontal(celulas, M)
     ver = verifica_vizinhos_vertical(celulas, M)
     grafo, vertices, arestas = criando_grafo(hor, ver)
-    print(vertices, arestas)
+    print(f'Número de vértices: {vertices}\nNúmero de arestas: {arestas}')
