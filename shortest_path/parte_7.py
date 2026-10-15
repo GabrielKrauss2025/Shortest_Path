@@ -1,82 +1,82 @@
-from parte_2 import carregar_labirinto, cria_celulas, verifica_vizinhos_horizontal, verifica_vizinhos_vertical, criando_grafo
-from parte_5 import dijkstra
-from parte_6 import reconstruir_caminho
-import matplotlib.pyplot as plt
-import os
-import time
+from parte_6 import *
 
-M , topo, esq = carregar_labirinto("../img/labirinto.png")
+if __name__ == '__main__':
+    M , topo, esq = carregar_labirinto("../img/labirinto.png")
 
-celulas = cria_celulas(20, M)
-hor = verifica_vizinhos_horizontal(celulas, M)
-ver = verifica_vizinhos_vertical(celulas, M)
-grafo, vertices, arestas = criando_grafo(hor, ver)
+    # imagem original
+    original = np.array(Image.open("../img/labirinto.png"))
 
-inicio = time.perf_counter()
-distancia, anterior = dijkstra(grafo, 1)
-caminho = reconstruir_caminho(anterior, 1, 400)
-fim = time.perf_counter()
-print(f'Tempo total: {fim - inicio} s')
+    celulas = cria_celulas(20, M)
+    hor = verifica_vizinhos_horizontal(celulas, M)
+    ver = verifica_vizinhos_vertical(celulas, M)
+    grafo, vertices, arestas = criando_grafo(hor, ver)
 
-# apenas o caminho mínimo sobre o labirinto
-plt.figure(figsize=(8, 8))
-plt.axis('off')
-plt.imshow(M, cmap='gray')
-plt.title('Apenas caminho mínimo')
+    s, t = 1, vertices
 
-# plotando as arestas do grafo
-for u in caminho:
-    x1, y1 = celulas[u]["centro"]
-    for v in grafo[u]:
-        if u < v and v in caminho:
-            x2, y2 = celulas[v]["centro"]
-            plt.plot([x1, x2], [y1, y2], color='blue', linewidth=1.5)
+    distancia, anterior = dijkstra(grafo, s)
+    caminho = reconstruir_caminho(anterior, s, t)
 
-# desenha os vértices
-x_coords = [celulas[v]["centro"][0] for v in caminho]
-y_coords = [celulas[v]["centro"][1] for v in caminho]
+    # centros em coordenadas da imagem original
+    centros = {v: (celulas[v]["centro"][0] + esq, celulas[v]["centro"][1] + topo) for v in celulas}
 
-plt.scatter(x_coords[1:-1], y_coords[1:-1], c='orange', s=25, zorder=2)
-plt.scatter(x_coords[0], y_coords[0], c='green', s=30, zorder=2)
-plt.scatter(x_coords[-1], y_coords[-1], c='red', s=30, zorder=2)
+    # apenas o caminho mínimo sobre o labirinto
+    plt.figure()
+    plt.axis('off')
+    plt.imshow(original)
+    plt.title('Apenas caminho mínimo')
 
-# salva a imagem em 'img'
-os.makedirs('../img', exist_ok=True)
-plt.savefig('../img/apenas_caminho_minimo.png', dpi=150, bbox_inches='tight')
-plt.show()
-
-
-# grafo completo com caminho mínimo destacado
-plt.figure(figsize=(8, 8))
-plt.axis('off')
-plt.imshow(M, cmap='gray')
-plt.title('Grafo com caminho mínimo')
-
-# plotando as arestas do grafo
-for u in celulas:
-    x1, y1 = celulas[u]["centro"]
-    for v in grafo[u]:
-        if u < v:
-            x2, y2 = celulas[v]["centro"]
-            if u in caminho and v in caminho:
-                plt.plot([x1, x2], [y1, y2], color='red', linewidth=1.5)
-            else:
+    # plotando as arestas do grafo
+    for u in caminho:
+        x1, y1 = centros[u]
+        for v in grafo[u]:
+            if u < v and v in caminho:
+                x2, y2 = centros[v]
                 plt.plot([x1, x2], [y1, y2], color='blue', linewidth=1.5)
 
-# desenha os vértices
-x_coords = [celulas[v]["centro"][0] for v in caminho]
-y_coords = [celulas[v]["centro"][1] for v in caminho]
+    # desenha os vértices
+    x_coords = [centros[v][0] for v in centros if v in caminho]
+    y_coords = [centros[v][1] for v in centros if v in caminho]
 
-plt.scatter(x_coords[1:-1], y_coords[1:-1], c='black', s=25, zorder=2)
-plt.scatter(x_coords[0], y_coords[0], c='green', s=30, zorder=2)
-plt.scatter(x_coords[-1], y_coords[-1], c='red', s=30, zorder=2)
+    plt.scatter(x_coords[1:-1], y_coords[1:-1], c='orange', s=15, zorder=2)
+    plt.scatter(x_coords[0], y_coords[0], c='green', s=35, zorder=2)
+    plt.scatter(x_coords[-1], y_coords[-1], c='red', s=35, zorder=2)
 
-x_coords = [celulas[v]["centro"][0] for v in celulas if v not in caminho]
-y_coords = [celulas[v]["centro"][1] for v in celulas if v not in caminho]
-plt.scatter(x_coords, y_coords, c='orange', s=25, zorder=2)
+    # salva a imagem em 'img'
+    plt.savefig('../img/apenas_caminho_minimo.png', dpi=500, bbox_inches='tight')
+    plt.show()
 
 
-# salva a imagem em 'img'
-os.makedirs('../img', exist_ok=True)
-plt.savefig('../img/grafo_com_caminho_minimo.png', dpi=150, bbox_inches='tight')
-plt.show()
+    # grafo completo com caminho mínimo destacado
+    plt.figure()
+    plt.axis('off')
+    plt.imshow(original)
+    plt.title('Grafo com caminho mínimo')
+
+    # plotando as arestas do grafo
+    for u in celulas:
+        x1, y1 = centros[u]
+        for v in grafo[u]:
+            if u < v:
+                x2, y2 = centros[v]
+                if u in caminho and v in caminho:
+                    plt.plot([x1, x2], [y1, y2], color='red', linewidth=1.5)
+                else:
+                    plt.plot([x1, x2], [y1, y2], color='blue', linewidth=1.5)
+
+    # desenha os vértices
+    x_coords = [centros[v][0] for v in centros]
+    y_coords = [centros[v][1] for v in centros]
+
+    plt.scatter(x_coords[1:-1], y_coords[1:-1], c='black', s=15, zorder=2)
+    plt.scatter(x_coords[0], y_coords[0], c='green', s=35, zorder=2)
+    plt.scatter(x_coords[-1], y_coords[-1], c='red', s=35, zorder=2)
+
+    x_coords = [centros[v][0] for v in celulas if v not in caminho]
+    y_coords = [centros[v][1] for v in celulas if v not in caminho]
+    plt.scatter(x_coords, y_coords, c='orange', s=15, zorder=2)
+
+
+    # salva a imagem em 'img'
+    os.makedirs('../img', exist_ok=True)
+    plt.savefig('../img/grafo_com_caminho_minimo.png', dpi=500, bbox_inches='tight')
+    plt.show()

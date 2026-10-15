@@ -1,4 +1,5 @@
-from heapq import heappop, heappush
+from parte_3 import *
+
 
 def dijkstra(A, s):
     dist, anterior = {}, {}
