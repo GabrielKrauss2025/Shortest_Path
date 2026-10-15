@@ -15,13 +15,13 @@ if __name__ == '__main__':
     celulas = cria_celulas(20, M)
     hor = verifica_vizinhos_horizontal(celulas, M)
     ver = verifica_vizinhos_vertical(celulas, M)
-    grafo, vertices, arestas = criando_grafo(hor, ver)
+    grafo, vertices, arestas = criando_grafo(hor, ver, 20)
     s, t = 1, vertices
 
     inicio = time.perf_counter()
     distancia, anterior = dijkstra(grafo, s)
-    caminho = reconstruir_caminho(anterior, s, t)
     fim = time.perf_counter()
+    caminho = reconstruir_caminho(anterior, s, t)
     print(f'Custo do caminho mínimo: {distancia[t]}')
     print(f'Número de movimentos realizados: {len(caminho) - 1}')
     print(f'Número de vértices pertencentes ao caminho mínimo: {len(caminho)}')

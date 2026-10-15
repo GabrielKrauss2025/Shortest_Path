@@ -9,7 +9,7 @@ if __name__ == '__main__':
     celulas = cria_celulas(20, M)
     hor = verifica_vizinhos_horizontal(celulas, M)
     ver = verifica_vizinhos_vertical(celulas, M)
-    grafo, vertices, arestas = criando_grafo(hor, ver)
+    grafo, vertices, arestas = criando_grafo(hor, ver, 20)
 
     s, t = 1, vertices
 

@@ -76,15 +76,16 @@ def verifica_vizinhos_vertical(celulas, lab):
 
     return passagens_ver
 
-def criando_grafo(hor, ver):
+def criando_grafo(hor, ver, num_celulas):
+    n = num_celulas ** 2
     grafo = {}
-    for id_no in range(1, 401):
+    for id_no in range(1, n + 1):
         viz_hor = hor.get(id_no, [])
         viz_ver = ver.get(id_no, [])
         
         grafo[id_no] = list(set(viz_hor).union(set(viz_ver))) 
         
-    vertices = len(grafo)
+    vertices = n
     arestas = 0
 
     for v in grafo:
@@ -100,5 +101,5 @@ if __name__ == '__main__':
     celulas = cria_celulas(20, M)
     hor = verifica_vizinhos_horizontal(celulas, M)
     ver = verifica_vizinhos_vertical(celulas, M)
-    grafo, vertices, arestas = criando_grafo(hor, ver)
+    grafo, vertices, arestas = criando_grafo(hor, ver, 20)
     print(f'Número de vértices: {vertices}\nNúmero de arestas: {arestas}')
