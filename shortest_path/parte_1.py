@@ -4,10 +4,10 @@ import numpy as np
 import os
 
 def carregar_labirinto(title):
-    # ler a imagem
+    # carregar a imagem
     img = Image.open(title)
 
-    # converter para cinza
+    # converter para a escala de cinza
     cinza = img.convert('L')
 
     # transforma em matriz
@@ -17,7 +17,7 @@ def carregar_labirinto(title):
     # 0's representam paredes e 1's representam corredores
     M = (M > 128).astype(int)
 
-    # Recorta a matriz
+    # recorta o labirinto
     linha = np.where((M == 0).any(axis=1))[0]
     coluna = np.where((M == 0).any(axis=0))[0]
     M = M[linha.min():(linha.max() + 1), coluna.min():(coluna.max() + 1)]
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     plt.figure()
     plt.axis('off')
     plt.imshow(img)
-    plt.title('Imagem original do labirinto')
+    plt.title('Imagem original')
     plt.show()
 
 
@@ -41,9 +41,9 @@ if __name__ == '__main__':
     plt.figure()
     plt.axis('off')
     plt.imshow(M, cmap='gray')
-    plt.title('Imagem binária do labirinto')
+    plt.title('Imagem binária')
+    plt.savefig('../img/labirinto_binario.png', dpi=500, bbox_inches='tight')
 
-    plt.savefig('../img/labirinto_binario.png', dpi=150, bbox_inches='tight')
     linhas, colunas = M.shape
     tol = 5
 
@@ -57,10 +57,10 @@ if __name__ == '__main__':
     linha_saida = np.where(M[:, -1] == 1)[0]
     if linha_saida.size == 0:
         raise ValueError('Labirinto inválido')
-    plt.scatter(colunas - tol, (linha_saida.min() + linha_saida.max()) / 2, c='red', s = 35)
+    plt.scatter((colunas - 1) - tol, (linha_saida.min() + linha_saida.max()) / 2, c='red', s = 35)
 
-    # Salva a imagem em 'img'
-    plt.savefig('../img/labirinto_binario_pontos.png', dpi=150, bbox_inches='tight')
+    print(f'Entrada: {(0, float((linha_entrada.min() + linha_entrada.max()) / 2))}\nSaída: {(colunas - 1, float((linha_saida.min() + linha_saida.max()) / 2))}')
+
+    # salva a imagem em 'img'
+    plt.savefig('../img/labirinto_binario_pontos.png', dpi=500, bbox_inches='tight')
     plt.show()
-
-
