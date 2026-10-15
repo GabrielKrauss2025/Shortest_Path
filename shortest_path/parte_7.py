@@ -18,12 +18,13 @@ caminho = reconstruir_caminho(anterior, 1, 400)
 fim = time.perf_counter()
 print(f'Tempo total: {fim - inicio} s')
 
+# apenas o caminho mínimo sobre o labirinto
 plt.figure(figsize=(8, 8))
 plt.axis('off')
 plt.imshow(M, cmap='gray')
-plt.title('Caminho mínimo')
+plt.title('Apenas caminho mínimo')
 
-# Plotando as arestas do grafo
+# plotando as arestas do grafo
 for u in caminho:
     x1, y1 = celulas[u]["centro"]
     for v in grafo[u]:
@@ -31,15 +32,51 @@ for u in caminho:
             x2, y2 = celulas[v]["centro"]
             plt.plot([x1, x2], [y1, y2], color='blue', linewidth=1.5)
 
-# Desenha os vértices
-x_coords = [celulas[v]["centro"][0] for v in celulas]
-y_coords = [celulas[v]["centro"][1] for v in celulas]
+# desenha os vértices
+x_coords = [celulas[v]["centro"][0] for v in caminho]
+y_coords = [celulas[v]["centro"][1] for v in caminho]
 
 plt.scatter(x_coords[1:-1], y_coords[1:-1], c='orange', s=25, zorder=2)
 plt.scatter(x_coords[0], y_coords[0], c='green', s=30, zorder=2)
 plt.scatter(x_coords[-1], y_coords[-1], c='red', s=30, zorder=2)
 
-# Salva a imagem em 'img'
+# salva a imagem em 'img'
 os.makedirs('../img', exist_ok=True)
-plt.savefig('../img/caminho_minimo.png', dpi=150, bbox_inches='tight')
+plt.savefig('../img/apenas_caminho_minimo.png', dpi=150, bbox_inches='tight')
+plt.show()
+
+
+# grafo completo com caminho mínimo destacado
+plt.figure(figsize=(8, 8))
+plt.axis('off')
+plt.imshow(M, cmap='gray')
+plt.title('Grafo com caminho mínimo')
+
+# plotando as arestas do grafo
+for u in celulas:
+    x1, y1 = celulas[u]["centro"]
+    for v in grafo[u]:
+        if u < v:
+            x2, y2 = celulas[v]["centro"]
+            if u in caminho and v in caminho:
+                plt.plot([x1, x2], [y1, y2], color='red', linewidth=1.5)
+            else:
+                plt.plot([x1, x2], [y1, y2], color='blue', linewidth=1.5)
+
+# desenha os vértices
+x_coords = [celulas[v]["centro"][0] for v in caminho]
+y_coords = [celulas[v]["centro"][1] for v in caminho]
+
+plt.scatter(x_coords[1:-1], y_coords[1:-1], c='black', s=25, zorder=2)
+plt.scatter(x_coords[0], y_coords[0], c='green', s=30, zorder=2)
+plt.scatter(x_coords[-1], y_coords[-1], c='red', s=30, zorder=2)
+
+x_coords = [celulas[v]["centro"][0] for v in celulas if v not in caminho]
+y_coords = [celulas[v]["centro"][1] for v in celulas if v not in caminho]
+plt.scatter(x_coords, y_coords, c='orange', s=25, zorder=2)
+
+
+# salva a imagem em 'img'
+os.makedirs('../img', exist_ok=True)
+plt.savefig('../img/grafo_com_caminho_minimo.png', dpi=150, bbox_inches='tight')
 plt.show()
