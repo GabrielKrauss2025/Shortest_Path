@@ -1,4 +1,4 @@
-from parte_1 import carregar_labirinto
+from parte_1 import *
 
 def cria_celulas(num_celulas, lab):
     n_celulas = num_celulas 

@@ -20,9 +20,13 @@ def carregar_labirinto(title):
     # recorta o labirinto
     linha = np.where((M == 0).any(axis=1))[0]
     coluna = np.where((M == 0).any(axis=0))[0]
-    M = M[linha.min():(linha.max() + 1), coluna.min():(coluna.max() + 1)]
 
-    return M
+    topo = linha.min()
+    esq = coluna.min()
+
+    M = M[topo:(linha.max() + 1), esq:(coluna.max() + 1)]
+
+    return M, topo, esq
 
 if __name__ == '__main__':
     os.makedirs('../img', exist_ok=True)
@@ -37,7 +41,7 @@ if __name__ == '__main__':
 
 
     # apresenta a imagem binária
-    M = carregar_labirinto('../img/labirinto.png')
+    M, topo, esq = carregar_labirinto('../img/labirinto.png')
     plt.figure()
     plt.axis('off')
     plt.imshow(M, cmap='gray')
