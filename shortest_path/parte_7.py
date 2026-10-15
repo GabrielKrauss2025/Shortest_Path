@@ -3,6 +3,7 @@ from parte_5 import dijkstra
 from parte_6 import reconstruir_caminho
 import matplotlib.pyplot as plt
 import os
+import time
 
 M = carregar_labirinto("../img/labirinto.png")
 
@@ -11,8 +12,11 @@ hor = verifica_vizinhos_horizontal(celulas, M)
 ver = verifica_vizinhos_vertical(celulas, M)
 grafo, vertices, arestas = criando_grafo(hor, ver)
 
+inicio = time.perf_counter()
 distancia, anterior = dijkstra(grafo, 1)
 caminho = reconstruir_caminho(anterior, 1, 400)
+fim = time.perf_counter()
+print(f'Tempo total: {fim - inicio} s')
 
 plt.figure(figsize=(8, 8))
 plt.axis('off')
