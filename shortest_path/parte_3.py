@@ -1,10 +1,10 @@
 from parte_2 import *
 
 if __name__ == '__main__':
-    M, topo, esq = carregar_labirinto("../img/labirinto.png")
+    M, topo, esq = carregar_labirinto(IMG / "labirinto.png")
 
     # imagem original
-    original = np.array(Image.open("../img/labirinto.png"))
+    original = np.array(Image.open(IMG / "labirinto.png"))
 
     celulas = cria_celulas(20, M)
     hor = verifica_vizinhos_horizontal(celulas, M)
@@ -36,5 +36,5 @@ if __name__ == '__main__':
     plt.scatter(x_coords[-1], y_coords[-1], c='red', s=35, zorder=2)
 
     # salva a imagem em 'img'
-    plt.savefig('../img/labirinto_grafo_completo.png', dpi=500, bbox_inches='tight')
+    plt.savefig(IMG / 'labirinto_grafo_completo.png', dpi=500, bbox_inches='tight')
     plt.show()

@@ -10,7 +10,7 @@ def reconstruir_caminho(anterior, s, t):
     return caminho[::-1]
 
 if __name__ == '__main__':
-    M, topo, esq = carregar_labirinto("../img/labirinto.png")
+    M, topo, esq = carregar_labirinto(IMG / "labirinto.png")
 
     celulas = cria_celulas(20, M)
     hor = verifica_vizinhos_horizontal(celulas, M)
