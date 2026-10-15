@@ -1,8 +1,6 @@
 from PIL import Image
 import matplotlib.pyplot as plt
-from heapq import heappop, heappush
 import numpy as np
-import time
 import os
 
 def carregar_labirinto(title):

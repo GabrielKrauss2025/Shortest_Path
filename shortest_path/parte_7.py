@@ -34,8 +34,8 @@ if __name__ == '__main__':
                 plt.plot([x1, x2], [y1, y2], color='blue', linewidth=1.5)
 
     # desenha os vértices
-    x_coords = [centros[v][0] for v in centros if v in caminho]
-    y_coords = [centros[v][1] for v in centros if v in caminho]
+    x_coords = [centros[v][0] for v in caminho]
+    y_coords = [centros[v][1] for v in caminho]
 
     plt.scatter(x_coords[1:-1], y_coords[1:-1], c='orange', s=15, zorder=2)
     plt.scatter(x_coords[0], y_coords[0], c='green', s=35, zorder=2)

@@ -1,5 +1,5 @@
 from parte_5 import *
-
+import time
 
 def reconstruir_caminho(anterior, s, t):
     caminho = [t]
