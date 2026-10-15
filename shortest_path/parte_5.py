@@ -7,7 +7,6 @@ def dijkstra(A, s):
         anterior[v] = None
 
     dist[s] = 0
-
     D = [(0, s)]
 
     while D:
@@ -23,4 +22,4 @@ def dijkstra(A, s):
                 dist[viz] = nova_dist
                 anterior[viz] = v_atual
                 heappush(D, (nova_dist, viz))
-    return [dist, anterior]
+    return dist, anterior

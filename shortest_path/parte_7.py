@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import os
 import time
 
-M = carregar_labirinto("../img/labirinto.png")
+M , topo, esq = carregar_labirinto("../img/labirinto.png")
 
 celulas = cria_celulas(20, M)
 hor = verifica_vizinhos_horizontal(celulas, M)
