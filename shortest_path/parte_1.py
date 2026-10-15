@@ -2,6 +2,9 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+from pathlib import Path
+
+IMG = Path(__file__).resolve().parent.parent / "img"
 
 def carregar_labirinto(title):
     # carregar a imagem
@@ -29,8 +32,8 @@ def carregar_labirinto(title):
     return M, topo, esq
 
 if __name__ == '__main__':
-    os.makedirs('../img', exist_ok=True)
-    img = Image.open('../img/labirinto.png')
+    os.makedirs(IMG, exist_ok=True)
+    img = Image.open(IMG / 'labirinto.png')
 
     # apresenta a imagem original
     plt.figure()
@@ -41,12 +44,12 @@ if __name__ == '__main__':
 
 
     # apresenta a imagem binária
-    M, topo, esq = carregar_labirinto('../img/labirinto.png')
+    M, topo, esq = carregar_labirinto(IMG / 'labirinto.png')
     plt.figure()
     plt.axis('off')
     plt.imshow(M, cmap='gray')
     plt.title('Imagem binária')
-    plt.savefig('../img/labirinto_binario.png', dpi=500, bbox_inches='tight')
+    plt.savefig(IMG / 'labirinto_binario.png', dpi=500, bbox_inches='tight')
 
     linhas, colunas = M.shape
     tol = 5
@@ -66,5 +69,5 @@ if __name__ == '__main__':
     print(f'Entrada: {(0, float((linha_entrada.min() + linha_entrada.max()) / 2))}\nSaída: {(colunas - 1, float((linha_saida.min() + linha_saida.max()) / 2))}')
 
     # salva a imagem em 'img'
-    plt.savefig('../img/labirinto_binario_pontos.png', dpi=500, bbox_inches='tight')
+    plt.savefig(IMG / 'labirinto_binario_pontos.png', dpi=500, bbox_inches='tight')
     plt.show()
