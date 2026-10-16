@@ -58,13 +58,13 @@ if __name__ == '__main__':
     linha_entrada = np.where(M[:, 0] == 1)[0]
     if linha_entrada.size == 0:
         raise ValueError('Labirinto inválido')
-    plt.scatter(0 + tol, (linha_entrada.min() + linha_entrada.max()) / 2, c='green', s = 35)
+    plt.scatter(11 + tol, (linha_entrada.min() + linha_entrada.max()) / 2, c='green', s = 35)
 
     # saída
     linha_saida = np.where(M[:, -1] == 1)[0]
     if linha_saida.size == 0:
         raise ValueError('Labirinto inválido')
-    plt.scatter((colunas - 1) - tol, (linha_saida.min() + linha_saida.max()) / 2, c='red', s = 35)
+    plt.scatter((colunas - 11) - tol, (linha_saida.min() + linha_saida.max()) / 2, c='blue', s = 35)
 
     print(f'Entrada: {(0, float((linha_entrada.min() + linha_entrada.max()) / 2))}\nSaída: {(colunas - 1, float((linha_saida.min() + linha_saida.max()) / 2))}')
 

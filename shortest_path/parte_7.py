@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     plt.scatter(x_coords[1:-1], y_coords[1:-1], c='orange', s=15, zorder=2)
     plt.scatter(x_coords[0], y_coords[0], c='green', s=35, zorder=2)
-    plt.scatter(x_coords[-1], y_coords[-1], c='red', s=35, zorder=2)
+    plt.scatter(x_coords[-1], y_coords[-1], c='blue', s=35, zorder=2)
 
     # salva a imagem em 'img'
     plt.savefig(IMG / 'apenas_caminho_minimo.png', dpi=500, bbox_inches='tight')
@@ -69,7 +69,7 @@ if __name__ == '__main__':
 
     plt.scatter(x_coords[1:-1], y_coords[1:-1], c='orange', s=15, zorder=2)
     plt.scatter(x_coords[0], y_coords[0], c='green', s=35, zorder=2)
-    plt.scatter(x_coords[-1], y_coords[-1], c='red', s=35, zorder=2)
+    plt.scatter(x_coords[-1], y_coords[-1], c='blue', s=35, zorder=2)
 
     x_coords = [centros[v][0] for v in celulas if v not in caminho]
     y_coords = [centros[v][1] for v in celulas if v not in caminho]
