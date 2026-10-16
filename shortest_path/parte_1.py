@@ -64,9 +64,9 @@ if __name__ == '__main__':
     linha_saida = np.where(M[:, -1] == 1)[0]
     if linha_saida.size == 0:
         raise ValueError('Labirinto inválido')
-    plt.scatter((colunas - 11) - tol, (linha_saida.min() + linha_saida.max()) / 2, c='blue', s = 35)
+    plt.scatter((colunas - 12) - tol, (linha_saida.min() + linha_saida.max()) / 2, c='blue', s = 35)
 
-    print(f'Entrada: {(0, float((linha_entrada.min() + linha_entrada.max()) / 2))}\nSaída: {(colunas - 1, float((linha_saida.min() + linha_saida.max()) / 2))}')
+    print(f'Entrada: {(11, float((linha_entrada.min() + linha_entrada.max()) / 2))}\nSaída: {(colunas - 12, float((linha_saida.min() + linha_saida.max()) / 2))}')
 
     # salva a imagem em 'img'
     plt.savefig(IMG / 'labirinto_binario_pontos.png', dpi=500, bbox_inches='tight')
