@@ -23,7 +23,7 @@ if __name__ == '__main__':
     plt.figure()
     plt.axis('off')
     plt.imshow(original)
-    plt.title('Apenas caminho mínimo')
+    plt.title('Caminho Mínimo Sobreposto ao Labirinto')
 
     # plotando as arestas do grafo
     for u in caminho:
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     plt.figure()
     plt.axis('off')
     plt.imshow(original)
-    plt.title('Grafo com caminho mínimo')
+    plt.title('Grafo Completo Sobreposto ao Labirinto')
 
     # plotando as arestas do grafo
     for u in celulas:
