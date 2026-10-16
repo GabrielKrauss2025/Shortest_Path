@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 
 IMG = Path(__file__).resolve().parent.parent / "img"
+os.makedirs(IMG, exist_ok=True)
 
 def carregar_labirinto(title):
     # carregar a imagem
@@ -32,7 +33,6 @@ def carregar_labirinto(title):
     return M, topo, esq
 
 if __name__ == '__main__':
-    os.makedirs(IMG, exist_ok=True)
     img = Image.open(IMG / 'labirinto.png')
 
     # apresenta a imagem original

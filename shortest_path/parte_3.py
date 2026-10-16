@@ -31,7 +31,7 @@ if __name__ == '__main__':
     x_coords = [centros[v][0] for v in centros]
     y_coords = [centros[v][1] for v in centros]
 
-    plt.scatter(x_coords[1:-1], y_coords[1:-1], c='orange', s=15, zorder=2)
+    plt.scatter(x_coords[1:-1], y_coords[1:-1], c='purple', s=15, zorder=2)
     plt.scatter(x_coords[0], y_coords[0], c='green', s=35, zorder=2)
     plt.scatter(x_coords[-1], y_coords[-1], c='red', s=35, zorder=2)
 

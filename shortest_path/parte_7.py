@@ -31,7 +31,7 @@ if __name__ == '__main__':
         for v in grafo[u]:
             if u < v and v in caminho:
                 x2, y2 = centros[v]
-                plt.plot([x1, x2], [y1, y2], color='blue', linewidth=1.5)
+                plt.plot([x1, x2], [y1, y2], color='red', linewidth=1.5)
 
     # desenha os vértices
     x_coords = [centros[v][0] for v in caminho]
@@ -67,13 +67,13 @@ if __name__ == '__main__':
     x_coords = [centros[v][0] for v in centros]
     y_coords = [centros[v][1] for v in centros]
 
-    plt.scatter(x_coords[1:-1], y_coords[1:-1], c='black', s=15, zorder=2)
+    plt.scatter(x_coords[1:-1], y_coords[1:-1], c='orange', s=15, zorder=2)
     plt.scatter(x_coords[0], y_coords[0], c='green', s=35, zorder=2)
     plt.scatter(x_coords[-1], y_coords[-1], c='red', s=35, zorder=2)
 
     x_coords = [centros[v][0] for v in celulas if v not in caminho]
     y_coords = [centros[v][1] for v in celulas if v not in caminho]
-    plt.scatter(x_coords, y_coords, c='orange', s=15, zorder=2)
+    plt.scatter(x_coords, y_coords, c='purple', s=15, zorder=2)
 
 
     # salva a imagem em 'img'
