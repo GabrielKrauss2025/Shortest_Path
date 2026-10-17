@@ -12,9 +12,11 @@ O objetivo dessa atividade é transformar a imagem de um labirinto em uma estrut
 
 Em nosso problema são permitidos apenas movimentos cardeais, sendo os movimentos diagonais desconsiderados. No nosso problema as arestas não possuem peso, com isso, o custo de cada caminho é apenas o seu deslocamento (custo 1).
 
-![Figura 1 - Labirinto oiriginal](img/labirinto.png)
+<p align="center">
+  <img src="img/labirinto.png" alt="Figura 1 - Labirinto oiriginal" width="400">
+</p>
 
-*Figura 1 - Labirinto oiriginal*
+<p align="center"><em>Figura 1 - Labirinto oiriginal</em></p>
 
 ## 2. Tratamento da imagem
 
@@ -22,9 +24,11 @@ Em nosso problema são permitidos apenas movimentos cardeais, sendo os movimento
 
 Inicialmente, carregamos a imagem e convertemos para a escala de cinza para tirar imperfeições dos pixels, após isso transformamos o resultado do processo em uma matriz, usando um valor de corte para binarizá-la. Com isso, recortamos o labirinto seguindo a seguinte regra:
 
-![Figura 2 - Labirinto com pontos de entrada e saída](img/labirinto_binario_pontos.png)
+<p align="center">
+  <img src="img/labirinto_binario_pontos.png" alt="Figura 2 - Labirinto com pontos de entrada e saída" width="400">
+</p>
 
-*Figura 2 - Labirinto com pontos de entrada e saída*
+<p align="center"><em>Figura 2 - Labirinto com pontos de entrada e saída</em></p>
 
 Identificamos a entrada e saída do grafo tomando o primeiro pixel 0 da primeira e da última coluna, respectivamente, com uma tolerância para os pontos serem dentro do labirinto.
 
@@ -36,9 +40,11 @@ A partir disso, construímos as arestas analisando o ponto médio entre as coord
 
 Finalizamos com um total de 400 vértices e 399 arestas no grafo final.
 
-![Figura 3 - Labirinto com grafo completo sobreposto](img/labirinto_grafo_completo.png)
+<p align="center">
+  <img src="img/labirinto_grafo_completo.png" alt="Figura 3 - Labirinto com grafo completo sobreposto" width="400">
+</p>
 
-*Figura 3 - Labirinto com grafo completo sobreposto*
+<p align="center"><em>Figura 3 - Labirinto com grafo completo sobreposto</em></p>
 
 ## 3. Funcionamento do Dijkstra
 
@@ -61,9 +67,11 @@ Tendo em vista que o Dijkstra retorna a distância e o pai de cada vértice, rec
 
 Observe na imagem ao lado o caminho mínimo encontrado pelo algoritmo de Dijkstra.
 
-![Figura 4 - Labirinto com caminho mínimo sobreposto](img/apenas_caminho_minimo.png)
+<p align="center">
+  <img src="img/apenas_caminho_minimo.png" alt="Figura 4 - Labirinto com caminho mínimo sobreposto" width="400">
+</p>
 
-*Figura 4 - Labirinto com caminho mínimo sobreposto*
+<p align="center"><em>Figura 4 - Labirinto com caminho mínimo sobreposto</em></p>
 
 ## 5. Análise dos resultados
 
@@ -73,6 +81,8 @@ Com isso, avaliamos experimentalmente a eficiência da modelagem do labirinto co
 
 A relação entre as arestas e os vértices nos mostra uma trajetória simples e sem ciclos, além do tempo em microsegundos evidenciar que a abstração da imagem para uma estrutura discreta reduziu significativamente o custo computacional do problema.
 
-![Figura 5 - Labirinto com caminho mínimo no grafo completo sobreposto](img/grafo_com_caminho_minimo.png)
+<p align="center">
+  <img src="img/grafo_com_caminho_minimo.png" alt="Figura 5 - Labirinto com caminho mínimo no grafo completo sobreposto" width="400">
+</p>
 
-*Figura 5 - Labirinto com caminho mínimo no grafo completo sobreposto*
+<p align="center"><em>Figura 5 - Labirinto com caminho mínimo no grafo completo sobreposto</em></p>
