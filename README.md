@@ -6,7 +6,7 @@ André Felipe Oliveira, Davi Pestana, Felipe Ribeiro, Gabriel Krauss
 
 **IMPA Tech**
 
-> Versão em PDF deste relatório: [RELATORIO.pdf]([RELATORIO - LISTA COMPUTACIONAL 2.pdf])
+> Versão em PDF deste relatório: [RELATÓRIO - LISTA COMPUTACIONAL 2.pdf](RELAT%C3%93RIO%20-%20LISTA%20COMPUTACIONAL%202.pdf)
 
 ## 1. Introdução
 
