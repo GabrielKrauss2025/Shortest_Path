@@ -1,5 +1,5 @@
-import runpy
 from pathlib import Path
+import runpy
 
 pasta = Path(__file__).resolve().parent
 

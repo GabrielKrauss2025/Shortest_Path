@@ -1,8 +1,8 @@
-from PIL import Image
 import matplotlib.pyplot as plt
+from pathlib import Path
+from PIL import Image
 import numpy as np
 import os
-from pathlib import Path
 
 IMG = Path(__file__).resolve().parent.parent / "img"
 os.makedirs(IMG, exist_ok=True)
